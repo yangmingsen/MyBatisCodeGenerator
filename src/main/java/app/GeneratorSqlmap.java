@@ -12,14 +12,12 @@ import java.util.List;
 
 public class GeneratorSqlmap {
 
-
-
     public void generator() throws Exception{
 
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
         
-        File configFile = new File("generatorConfig.xml");
+        File configFile = new File(MyCommentGenerator.class.getClassLoader().getResource("generatorConfig2.xml").getFile());
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = cp.parseConfiguration(configFile);
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);
@@ -29,6 +27,8 @@ public class GeneratorSqlmap {
 
     }
     public static void main(String[] args) throws Exception {
+        String curDir = System.getProperty("user.dir");
+        System.out.println("你当前的工作目录为 :" + curDir);
         try {
             GeneratorSqlmap generatorSqlmap = new GeneratorSqlmap();
             generatorSqlmap.generator();
