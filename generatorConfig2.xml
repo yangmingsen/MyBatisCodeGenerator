@@ -5,16 +5,18 @@
 
 <generatorConfiguration>
     <context id="testTables" targetRuntime="MyBatis3">
-        <commentGenerator>
+        <commentGenerator type="app.MyCommentGenerator">
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="true" />
+            <property name="suppressAllComments" value="false" />
+            <property name="suppressDate" value="false"/>
             <!-- 是否添加数据表中字段的注释 true：是 ： false:否 -->
             <property name="addRemarkComments" value="true"/>
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/dbtest" userId="root"
+                        connectionURL="jdbc:mysql://localhost:3306/my_note_test" userId="root"
                         password="ymsyms">
+            <property name="useInformationSchema" value="true"/>
         </jdbcConnection>
         <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
             NUMERIC 类型解析为java.math.BigDecimal -->
@@ -23,7 +25,7 @@
         </javaTypeResolver>
 
         <!-- targetProject:生成PO类的位置 -->
-        <javaModelGenerator targetPackage="top.yms.entity"
+        <javaModelGenerator targetPackage="top.yms.note.entity"
                             targetProject=".\src\main\java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
@@ -31,46 +33,36 @@
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
         <!-- targetProject:mapper映射文件生成的位置 -->
-        <sqlMapGenerator targetPackage="top.yms.mapper"
+        <sqlMapGenerator targetPackage="top.yms.note.mapper"
                          targetProject=".\src\main\java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
         <!-- targetPackage：mapper接口生成的位置 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="top.yms.mapper"
+                             targetPackage="top.yms.note.mapper"
                              targetProject=".\src\main\java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-       <!--  <table schema="" tableName="tb_address"></table>
-        <table schema="" tableName="tb_areas"></table>
-        <table schema="" tableName="tb_brand"></table>
-        <table schema="" tableName="tb_cities"></table>
-        <table schema="" tableName="tb_content_category"></table>
-        <table schema="" tableName="tb_content"></table>
-        <table schema="" tableName="tb_freight_template"></table>
-        <table schema="" tableName="tb_goods"></table>
-        <table schema="" tableName="tb_goods_desc"></table>
-        <table schema="" tableName="tb_item"></table>
-        <table schema="" tableName="tb_item_cat"></table>
-        <table schema="" tableName="tb_order"></table>
-        <table schema="" tableName="tb_order_item"></table>
-        <table schema="" tableName="tb_brand"></table>
-        <table schema="" tableName="tb_pay_log"></table>
-        <table schema="" tableName="tb_provinces"></table>
-        <table schema="" tableName="tb_seckill_goods"></table>
-        <table schema="" tableName="tb_seckill_order"></table>
-        <table schema="" tableName="tb_seller"></table>
-        <table schema="" tableName="tb_specification"></table>
-        <table schema="" tableName="tb_specification_option"></table>
-        <table schema="" tableName="tb_type_template"></table>
-        <table schema="" tableName="tb_user"></table> -->
 
-        <table schema="" tableName="order"></table>
-        <table schema="" tableName="transaction_log"></table>
+        <table schema="" tableName="t_note_export">
+            <domainObjectRenamingRule searchString="^T" replaceString="" />
+            <columnRenamingRule searchString="f" replaceString=""/>
+        </table>
+        <table schema="" tableName="t_note_stars">
+            <domainObjectRenamingRule searchString="^T" replaceString="" />
+            <columnRenamingRule searchString="f" replaceString=""/>
+        </table>
+        <table schema="" tableName="t_note_tag">
+            <domainObjectRenamingRule searchString="^T" replaceString="" />
+            <columnRenamingRule searchString="f" replaceString=""/>
+        </table>
+        <table schema="" tableName="t_note_tag_user">
+            <domainObjectRenamingRule searchString="^T" replaceString="" />
+            <columnRenamingRule searchString="f" replaceString=""/>
+        </table>
 
-        
     </context>
 </generatorConfiguration>

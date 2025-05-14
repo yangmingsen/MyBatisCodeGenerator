@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class GeneratorSqlmap {
+public class GeneratorSqlmap  {
 
 
 
